@@ -1,0 +1,98 @@
+/* Font-size upgrade: roughly +2px across the UI while preserving responsive layout. */
+
+.menu a,
+.login,
+.btn { font-size: 14px; }
+
+.eyebrow { font-size: 12px; }
+.hero h1 { font-size: clamp(44px, 4.4vw, 66px); }
+.hero-left > p { font-size: 16px; }
+.hero-stats strong { font-size: 20px; }
+.hero-stats small { font-size: 12px; }
+
+.card-title strong { font-size: 19px; }
+.card-title span { font-size: 12px; }
+.online { font-size: 11px; }
+.usage-row { font-size: 12px; }
+.specs strong { font-size: 18px; }
+.specs span { font-size: 11px; }
+.proxy-head strong { font-size: 16px; }
+.proxy-head span { font-size: 11px; }
+.tags span { font-size: 10px; }
+
+.tech-list div { font-size: 12px; }
+
+.section-kicker { font-size: 11px; }
+.section-head h2,
+.center-head h2,
+.management h2 { font-size: clamp(32px, 3.5vw, 46px); }
+.section-head > p,
+.center-head p { font-size: 13px; }
+
+.game-body h3 { font-size: 18px; }
+.game-body p { font-size: 12px; }
+.chips span { font-size: 10px; }
+
+.service-tabs button,
+.billing-tabs button { font-size: 12px; }
+.plan-label { font-size: 13px; }
+.plan-name { font-size: 11px; }
+.price b { font-size: 28px; }
+.price span { font-size: 11px; }
+.price-card li,
+.proxy-price-card li { font-size: 12px; }
+.popular { font-size: 9px; }
+
+.proxy-title strong { font-size: 16px; }
+.proxy-title small { font-size: 10px; }
+.proxy-price { font-size: 28px; }
+.proxy-price small { font-size: 11px; }
+
+.feature-grid h3 { font-size: 15px; }
+.feature-grid p { font-size: 11px; }
+
+.management-copy > p { font-size: 13px; }
+.check-list div { font-size: 12px; }
+.dash-brand { font-size: 12px; }
+.dash-sidebar a { font-size: 11px; }
+.dash-head strong { font-size: 15px; }
+.dash-head span { font-size: 10px; }
+.chart-title { font-size: 10px; }
+.dash-stats span { font-size: 10px; }
+.dash-stats strong { font-size: 17px; }
+.dash-stats small { font-size: 9px; }
+
+.faq summary { font-size: 11px; }
+.faq p { font-size: 10px; }
+
+.cta-copy h2 { font-size: 23px; }
+.cta-copy p { font-size: 12px; }
+
+.footer-about p { font-size: 11px; }
+.footer h4 { font-size: 12px; }
+.footer-grid a,
+.footer-grid span { font-size: 11px; }
+.footer-bottom { font-size: 10px; }
+
+@media (max-width: 900px) {
+  .menu a { font-size: 13px; }
+  .section-head > p { font-size: 12px; }
+}
+
+@media (max-width: 700px) {
+  .hero h1 { font-size: 44px; }
+  .hero-left > p { font-size: 14px; }
+  .game-body p,
+  .feature-grid p,
+  .price-card li,
+  .proxy-price-card li { font-size: 11px; }
+  .faq summary { font-size: 12px; }
+  .faq p { font-size: 11px; }
+}
+
+@media (max-width: 420px) {
+  .hero h1 { font-size: 38px; }
+  .hero-left > p { font-size: 14px; }
+  .btn { font-size: 13px; }
+  .cta-copy h2 { font-size: 20px; }
+}

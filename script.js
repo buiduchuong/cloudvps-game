@@ -1,3 +1,8 @@
+const fontSizeStylesheet = document.createElement('link');
+fontSizeStylesheet.rel = 'stylesheet';
+fontSizeStylesheet.href = 'font-size-overrides.css?v=2';
+document.head.appendChild(fontSizeStylesheet);
+
 const menuBtn = document.getElementById('menuBtn');
 const menu = document.getElementById('menu');
 
