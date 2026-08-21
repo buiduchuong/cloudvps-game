@@ -79,7 +79,6 @@ if (window.matchMedia('(pointer:fine)').matches) {
     const x = (event.clientX - rect.left) / rect.width - 0.5;
     const y = (event.clientY - rect.top) / rect.height - 0.5;
 
-    if (serverCard) serverCard.style.marginTransform = '';
     serverCard?.style.setProperty('translate', `${x * 5}px ${y * 5}px`);
     proxyCard?.style.setProperty('translate', `${x * -4}px ${y * -4}px`);
   });
