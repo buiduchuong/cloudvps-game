@@ -1,3 +1,8 @@
+const smoothStylesheet = document.createElement('link');
+smoothStylesheet.rel = 'stylesheet';
+smoothStylesheet.href = 'smooth-overrides.css?v=1';
+document.head.appendChild(smoothStylesheet);
+
 const menuBtn = document.getElementById('menuBtn');
 const menu = document.getElementById('menu');
 
@@ -53,6 +58,7 @@ const sections = sectionLinks
   .map(link => document.querySelector(link.getAttribute('href')))
   .filter(Boolean);
 
+let scrollTicking = false;
 const syncActiveNav = () => {
   const marker = window.scrollY + 130;
   let activeId = 'home';
@@ -64,27 +70,15 @@ const syncActiveNav = () => {
   sectionLinks.forEach(link => {
     link.classList.toggle('active', link.getAttribute('href') === `#${activeId}`);
   });
+
+  scrollTicking = false;
 };
 
-window.addEventListener('scroll', syncActiveNav, { passive: true });
+window.addEventListener('scroll', () => {
+  if (!scrollTicking) {
+    scrollTicking = true;
+    requestAnimationFrame(syncActiveNav);
+  }
+}, { passive: true });
+
 syncActiveNav();
-
-if (window.matchMedia('(pointer:fine)').matches) {
-  const visual = document.querySelector('.hero-visual');
-  const serverCard = document.querySelector('.main-server-card');
-  const proxyCard = document.querySelector('.mini-proxy');
-
-  visual?.addEventListener('mousemove', event => {
-    const rect = visual.getBoundingClientRect();
-    const x = (event.clientX - rect.left) / rect.width - 0.5;
-    const y = (event.clientY - rect.top) / rect.height - 0.5;
-
-    serverCard?.style.setProperty('translate', `${x * 5}px ${y * 5}px`);
-    proxyCard?.style.setProperty('translate', `${x * -4}px ${y * -4}px`);
-  });
-
-  visual?.addEventListener('mouseleave', () => {
-    serverCard?.style.removeProperty('translate');
-    proxyCard?.style.removeProperty('translate');
-  });
-}

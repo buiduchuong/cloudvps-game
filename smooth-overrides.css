@@ -1,0 +1,129 @@
+/* Smooth interaction/performance overrides.
+   Keeps the visual effects, but separates scroll-reveal motion from hover transforms
+   and avoids layout-heavy hover animation. */
+
+/* Reveal now uses the individual translate property, so it no longer fights
+   with card hover transforms. */
+.reveal {
+  transform: none !important;
+  translate: 0 14px;
+  transition: opacity .5s ease, translate .5s cubic-bezier(.2,.8,.2,1) !important;
+}
+.reveal.is-visible {
+  transform: none !important;
+  translate: 0 0;
+}
+.delay-1 { transition-delay: .05s !important; }
+.delay-2 { transition-delay: .10s !important; }
+.delay-3 { transition-delay: .15s !important; }
+
+/* Give only continuously moving hero elements their own compositor layer. */
+.floating-card,
+.floating-card-secondary,
+.ping-badge {
+  will-change: transform;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+/* Smaller, calmer floating distance. */
+.floating-card { animation: floatCardSmooth 6.2s ease-in-out infinite !important; }
+.floating-card-secondary { animation: floatCardSmooth 6.8s ease-in-out infinite reverse !important; }
+.ping-badge { animation: floatCardSmooth 6s ease-in-out infinite !important; }
+
+/* Avoid expensive layout animation for the button shine. */
+.btn:before {
+  left: -35% !important;
+  transform: translate3d(-160%,0,0) rotate(20deg) !important;
+  transition: transform .48s cubic-bezier(.2,.8,.2,1) !important;
+  will-change: transform;
+}
+.btn:hover:before {
+  left: -35% !important;
+  transform: translate3d(520%,0,0) rotate(20deg) !important;
+}
+
+/* Shorter hover distance + faster easing. Shadows are intentionally lighter. */
+.service-card,
+.price-card,
+.feature-card,
+.btn,
+.service-icon {
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+@media (hover:hover) and (pointer:fine) {
+  .btn {
+    transition: transform .22s cubic-bezier(.2,.8,.2,1), border-color .22s ease, background-color .22s ease !important;
+  }
+  .btn:hover {
+    transform: translate3d(0,-2px,0) !important;
+    box-shadow: 0 13px 27px rgba(49,88,243,.22) !important;
+  }
+
+  .service-card {
+    transition: transform .24s cubic-bezier(.2,.8,.2,1), border-color .24s ease !important;
+  }
+  .service-card:hover,
+  .service-card.reveal:hover {
+    transform: translate3d(0,-4px,0) !important;
+    box-shadow: 0 17px 34px rgba(28,42,82,.09) !important;
+  }
+  .service-card:hover:before { transform: scale(1.18) !important; }
+  .service-card:hover .service-icon {
+    transform: translate3d(0,-1px,0) scale(1.045) !important;
+  }
+
+  .price-card {
+    transition: transform .24s cubic-bezier(.2,.8,.2,1), border-color .24s ease !important;
+  }
+  .price-card:hover,
+  .price-card.reveal:hover {
+    transform: translate3d(0,-4px,0) !important;
+    box-shadow: 0 17px 34px rgba(31,46,91,.09) !important;
+  }
+  .price-card.featured,
+  .price-card.featured.reveal {
+    transform: translate3d(0,-2px,0) !important;
+  }
+  .price-card.featured:hover,
+  .price-card.featured.reveal:hover {
+    transform: translate3d(0,-6px,0) !important;
+  }
+
+  .feature-card {
+    transition: transform .22s cubic-bezier(.2,.8,.2,1), background-color .22s ease !important;
+  }
+  .feature-card:hover,
+  .feature-card.reveal:hover {
+    transform: translate3d(0,-3px,0) !important;
+    box-shadow: 0 14px 28px rgba(25,39,75,.07) !important;
+  }
+  .feature-card:hover > span {
+    transform: translate3d(0,-1px,0) scale(1.055) !important;
+  }
+}
+
+/* Touch devices should not emulate desktop hover movement. */
+@media (hover:none), (pointer:coarse) {
+  .btn:hover,
+  .service-card:hover,
+  .price-card:hover,
+  .feature-card:hover,
+  .service-card:hover .service-icon,
+  .feature-card:hover > span {
+    transform: none !important;
+  }
+  .price-card.featured,
+  .price-card.featured.reveal { transform: none !important; }
+}
+
+@keyframes floatCardSmooth {
+  0%,100% { transform: translate3d(0,0,0); }
+  50% { transform: translate3d(0,-5px,0); }
+}
+
+@media (prefers-reduced-motion:reduce) {
+  .reveal { opacity: 1 !important; translate: 0 0 !important; }
+}
