@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#0d1731" />
+  <meta name="robots" content="noindex,nofollow" />
+  <title>Đăng ký tài khoản | CloudVPS</title>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="auth.css" />
+</head>
+<body class="auth-page">
+  <main class="auth-shell">
+    <section class="auth-side">
+      <a class="brand auth-brand" href="index.html"><span class="brand-mark">☁</span><strong>Cloud<span>VPS</span></strong></a>
+      <div class="auth-side-copy">
+        <span class="eyebrow">TẠO TÀI KHOẢN</span>
+        <h1>Bắt đầu quản lý dịch vụ <span>gọn hơn.</span></h1>
+        <p>Tạo tài khoản để chuẩn bị cho quy trình đặt VPS/Proxy, thanh toán, gia hạn và hỗ trợ kỹ thuật sau này.</p>
+        <div class="auth-points">
+          <div class="auth-point"><i>✓</i><span>Một tài khoản cho toàn bộ dịch vụ</span></div>
+          <div class="auth-point"><i>✓</i><span>Theo dõi đơn hàng và thời hạn</span></div>
+          <div class="auth-point"><i>✓</i><span>Sẵn sàng nối backend và thanh toán</span></div>
+        </div>
+      </div>
+      <p class="auth-note">Đây là bản demo frontend trên GitHub Pages. Hãy dùng thông tin mẫu khi thử nghiệm và không tái sử dụng mật khẩu thật.</p>
+    </section>
+
+    <section class="auth-main">
+      <div class="auth-card">
+        <div class="auth-head">
+          <span class="auth-kicker">ĐĂNG KÝ</span>
+          <h2>Tạo tài khoản CloudVPS</h2>
+          <p>Sau khi đăng ký demo, bạn sẽ được chuyển thẳng vào Dashboard khách hàng.</p>
+        </div>
+
+        <form class="auth-form" id="registerForm" novalidate>
+          <label class="auth-field"><span>Họ và tên</span><input id="name" name="name" type="text" autocomplete="name" placeholder="Nguyễn Văn A" required /></label>
+          <label class="auth-field"><span>Email</span><input id="email" name="email" type="email" autocomplete="email" placeholder="email@example.com" required /></label>
+          <label class="auth-field"><span>Số điện thoại</span><input id="phone" name="phone" type="tel" autocomplete="tel" placeholder="Không bắt buộc" /></label>
+          <label class="auth-field"><span>Mật khẩu demo</span><div class="auth-input-wrap"><input id="password" name="password" type="password" autocomplete="new-password" placeholder="Tối thiểu 6 ký tự" required /><button type="button" class="password-toggle" data-password-toggle="password" aria-pressed="false">Hiện</button></div></label>
+          <label class="auth-field"><span>Nhập lại mật khẩu</span><div class="auth-input-wrap"><input id="confirmPassword" name="confirmPassword" type="password" autocomplete="new-password" placeholder="Nhập lại mật khẩu" required /><button type="button" class="password-toggle" data-password-toggle="confirmPassword" aria-pressed="false">Hiện</button></div></label>
+          <label class="terms-row"><input id="terms" type="checkbox" required /><span>Tôi đồng ý với điều khoản sử dụng bản demo và hiểu rằng đây chưa phải hệ thống tài khoản production.</span></label>
+          <button class="btn auth-submit" type="submit">Tạo tài khoản <span>→</span></button>
+          <div class="auth-status" id="authStatus" role="status" aria-live="polite"></div>
+        </form>
+
+        <p class="auth-switch">Đã có tài khoản demo? <a href="login.html">Đăng nhập →</a></p>
+        <div class="auth-warning"><strong>Bảo mật:</strong> mật khẩu được nhập chỉ để mô phỏng form và bị bỏ ngay sau khi submit. Không có mật khẩu nào được lưu trong localStorage.</div>
+      </div>
+    </section>
+  </main>
+  <script src="auth.js"></script>
+</body>
+</html>
