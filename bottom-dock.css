@@ -1,0 +1,158 @@
+/* Persistent bottom dock – designed from scratch for CloudVPS */
+body.bottom-dock-enabled{padding-bottom:116px!important}
+
+.bottom-dock{
+  position:fixed;
+  left:50%;
+  bottom:18px;
+  z-index:9999;
+  width:min(690px,calc(100vw - 32px));
+  transform:translate3d(-50%,0,0);
+  padding:8px;
+  border:1px solid rgba(255,255,255,.42);
+  border-radius:24px;
+  background:linear-gradient(135deg,rgba(11,19,39,.88),rgba(21,32,66,.82));
+  box-shadow:0 18px 50px rgba(15,25,55,.22),inset 0 1px 0 rgba(255,255,255,.10);
+  backdrop-filter:blur(22px) saturate(155%);
+  -webkit-backdrop-filter:blur(22px) saturate(155%);
+  contain:layout paint style;
+}
+
+.bottom-dock__inner{
+  position:relative;
+  display:grid;
+  grid-template-columns:repeat(5,minmax(0,1fr));
+  align-items:center;
+  gap:4px;
+}
+
+.bottom-dock__item{
+  position:relative;
+  min-width:0;
+  height:62px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:5px;
+  border-radius:17px;
+  color:rgba(230,236,250,.72);
+  text-decoration:none;
+  isolation:isolate;
+  transform:translate3d(0,0,0);
+  transition:transform .28s cubic-bezier(.2,.8,.2,1),color .22s ease;
+  will-change:transform;
+  -webkit-tap-highlight-color:transparent;
+}
+
+.bottom-dock__item::before{
+  content:"";
+  position:absolute;
+  inset:3px;
+  z-index:-1;
+  border-radius:14px;
+  background:linear-gradient(135deg,rgba(255,255,255,.14),rgba(255,255,255,.055));
+  opacity:0;
+  transform:scale(.88) translateZ(0);
+  transition:opacity .24s ease,transform .28s cubic-bezier(.2,.8,.2,1);
+  will-change:transform,opacity;
+}
+
+.bottom-dock__icon{
+  width:23px;
+  height:23px;
+  display:grid;
+  place-items:center;
+  transform:translate3d(0,0,0) scale(1);
+  transition:transform .28s cubic-bezier(.2,.8,.2,1);
+  will-change:transform;
+}
+
+.bottom-dock__icon svg{width:100%;height:100%;display:block;fill:none;stroke:currentColor;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
+
+.bottom-dock__label{
+  max-width:100%;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  white-space:nowrap;
+  font-size:11px;
+  line-height:1;
+  font-weight:700;
+  letter-spacing:-.1px;
+}
+
+.bottom-dock__item.is-active{
+  color:#fff;
+}
+
+.bottom-dock__item.is-active::before{
+  opacity:1;
+  transform:scale(1) translateZ(0);
+  background:linear-gradient(135deg,rgba(72,105,255,.95),rgba(105,79,237,.92));
+  box-shadow:0 9px 22px rgba(64,83,221,.28);
+}
+
+.bottom-dock__item.is-active .bottom-dock__icon{
+  transform:translate3d(0,-1px,0) scale(1.04);
+}
+
+.bottom-dock__item::after{
+  content:"";
+  position:absolute;
+  left:50%;
+  bottom:-3px;
+  width:18px;
+  height:3px;
+  border-radius:99px;
+  background:linear-gradient(90deg,#63e5e0,#fff);
+  opacity:0;
+  transform:translate3d(-50%,4px,0) scaleX(.55);
+  transition:opacity .24s ease,transform .3s cubic-bezier(.2,.8,.2,1);
+}
+
+.bottom-dock__item.is-active::after{
+  opacity:.95;
+  transform:translate3d(-50%,0,0) scaleX(1);
+}
+
+@media(hover:hover) and (pointer:fine){
+  .bottom-dock__item:not(.is-active):hover{
+    color:#fff;
+    transform:translate3d(0,-5px,0);
+  }
+  .bottom-dock__item:not(.is-active):hover::before{
+    opacity:1;
+    transform:scale(1) translateZ(0);
+  }
+  .bottom-dock__item:not(.is-active):hover .bottom-dock__icon{
+    transform:translate3d(0,-2px,0) scale(1.08);
+  }
+}
+
+@media(max-width:700px){
+  body.bottom-dock-enabled{padding-bottom:104px!important}
+  .bottom-dock{
+    bottom:max(9px,env(safe-area-inset-bottom));
+    width:calc(100vw - 18px);
+    padding:6px;
+    border-radius:21px;
+  }
+  .bottom-dock__inner{gap:2px}
+  .bottom-dock__item{height:58px;border-radius:15px;gap:4px}
+  .bottom-dock__item::before{inset:2px;border-radius:13px}
+  .bottom-dock__icon{width:21px;height:21px}
+  .bottom-dock__label{font-size:10px}
+}
+
+@media(max-width:380px){
+  .bottom-dock{width:calc(100vw - 10px);padding:5px}
+  .bottom-dock__item{height:56px}
+  .bottom-dock__label{font-size:9px}
+}
+
+@media(prefers-reduced-motion:reduce){
+  .bottom-dock__item,
+  .bottom-dock__item::before,
+  .bottom-dock__item::after,
+  .bottom-dock__icon{transition:none!important}
+}
