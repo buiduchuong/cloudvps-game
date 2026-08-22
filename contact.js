@@ -1,13 +1,9 @@
-const bottomDockLoader = document.createElement('script');
-bottomDockLoader.src = 'bottom-dock.js?v=1';
-document.head.appendChild(bottomDockLoader);
-
 const menuBtn = document.getElementById('menuBtn');
 const menu = document.getElementById('menu');
 
 menuBtn?.addEventListener('click', () => {
-  menu.classList.toggle('show');
-  menuBtn.textContent = menu.classList.contains('show') ? '✕' : '☰';
+  menu?.classList.toggle('show');
+  menuBtn.textContent = menu?.classList.contains('show') ? '✕' : '☰';
 });
 
 document.querySelectorAll('.menu a').forEach(link => {

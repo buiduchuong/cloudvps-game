@@ -13,16 +13,21 @@
   <meta property="og:description" content="Proxy Việt Nam tốc độ ổn định, HTTP/HTTPS và SOCKS5, hỗ trợ whitelist và nhiều tài khoản." />
   <meta property="og:url" content="https://buiduchuong.github.io/cloudvps-game/proxy.html" />
   <meta property="og:site_name" content="CloudVPS" />
+  <meta name="twitter:card" content="summary" />
+  <link rel="icon" href="favicon.svg" type="image/svg+xml" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
   <link rel="stylesheet" href="service-pages.css" />
+  <link rel="stylesheet" href="smooth-overrides.css?v=2" />
+  <link rel="stylesheet" href="faq-smooth.css?v=4" />
+  <link rel="stylesheet" href="bottom-dock.css?v=2" />
   <script type="application/ld+json">
   {
     "@context":"https://schema.org",
     "@graph":[
-      {"@type":"Service","name":"Proxy Game Việt Nam","serviceType":"Proxy HTTP HTTPS SOCKS5","provider":{"@type":"Organization","name":"CloudVPS"},"areaServed":"VN","description":"Dịch vụ Proxy Game Việt Nam hỗ trợ HTTP/HTTPS và SOCKS5, whitelist hoặc user/password."},
+      {"@type":"Service","name":"Proxy Game Việt Nam","serviceType":"Proxy HTTP HTTPS SOCKS5","provider":{"@type":"Organization","name":"CloudVPS","url":"https://buiduchuong.github.io/cloudvps-game/"},"areaServed":"VN","url":"https://buiduchuong.github.io/cloudvps-game/proxy.html","description":"Dịch vụ Proxy Game Việt Nam hỗ trợ HTTP/HTTPS và SOCKS5, whitelist hoặc user/password."},
       {"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Trang chủ","item":"https://buiduchuong.github.io/cloudvps-game/"},{"@type":"ListItem","position":2,"name":"Proxy Game","item":"https://buiduchuong.github.io/cloudvps-game/proxy.html"}]},
       {"@type":"FAQPage","mainEntity":[
         {"@type":"Question","name":"Proxy Game là gì?","acceptedAnswer":{"@type":"Answer","text":"Proxy Game là máy chủ trung gian cung cấp một địa chỉ IP khác để tách kết nối giữa các tài khoản hoặc ứng dụng."}},
@@ -40,7 +45,7 @@
     <div class="container nav">
       <a class="brand" href="index.html"><span class="brand-mark">☁</span><strong>Cloud<span>VPS</span></strong></a>
       <nav class="menu" id="menu">
-        <a href="index.html">Trang chủ</a><a href="vps.html">VPS Game</a><a class="active" href="proxy.html">Proxy Game</a><a href="#pricing">Bảng giá</a><a href="blog.html">Blog</a><a href="#contact">Liên hệ</a>
+        <a href="index.html">Trang chủ</a><a href="vps.html">VPS Game</a><a class="active" href="proxy.html">Proxy Game</a><a href="#pricing">Bảng giá</a><a href="blog.html">Blog</a><a href="contact.html">Liên hệ</a>
       </nav>
       <div class="nav-actions"><a class="login" href="#">Đăng nhập</a><a class="btn btn-small btn-cyan" href="#pricing">Mua Proxy</a><button class="menu-btn" id="menuBtn" aria-label="Mở menu">☰</button></div>
     </div>
@@ -106,8 +111,8 @@
       <div class="container">
         <div class="seo-section-head reveal"><span>BẢNG GIÁ PROXY</span><h2>2 lựa chọn chính, dễ hiểu</h2><p>Chọn HTTP/HTTPS nếu ứng dụng hỗ trợ tốt; chọn SOCKS5 khi cần linh hoạt hơn.</p></div>
         <div class="seo-price-grid" style="max-width:780px;margin:auto;grid-template-columns:repeat(2,1fr)">
-          <article class="seo-price-card reveal"><span>PROXY VN</span><h3>HTTP / HTTPS</h3><div class="seo-price"><strong>29.000đ</strong><small>/ IP</small></div><ul><li>IP Việt Nam</li><li>User / Password</li><li>Đổi cấu hình nhanh</li><li>Phù hợp web & tool</li></ul><a class="btn btn-outline btn-full" href="#contact">Mua ngay</a></article>
-          <article class="seo-price-card featured reveal delay-1"><div class="badge">PHỔ BIẾN</div><span>SOCKS5</span><h3>Proxy tốc độ cao</h3><div class="seo-price"><strong>39.000đ</strong><small>/ IP</small></div><ul><li>SOCKS5</li><li>Whitelist IP</li><li>Phù hợp multi-account</li><li>Kết nối linh hoạt</li></ul><a class="btn btn-cyan btn-full" href="#contact">Mua ngay</a></article>
+          <article class="seo-price-card reveal"><span>PROXY VN</span><h3>HTTP / HTTPS</h3><div class="seo-price"><strong>29.000đ</strong><small>/ IP</small></div><ul><li>IP Việt Nam</li><li>User / Password</li><li>Đổi cấu hình nhanh</li><li>Phù hợp web & tool</li></ul><a class="btn btn-outline btn-full" href="contact.html">Mua ngay</a></article>
+          <article class="seo-price-card featured reveal delay-1"><div class="badge">PHỔ BIẾN</div><span>SOCKS5</span><h3>Proxy tốc độ cao</h3><div class="seo-price"><strong>39.000đ</strong><small>/ IP</small></div><ul><li>SOCKS5</li><li>Whitelist IP</li><li>Phù hợp multi-account</li><li>Kết nối linh hoạt</li></ul><a class="btn btn-cyan btn-full" href="contact.html">Mua ngay</a></article>
         </div>
       </div>
     </section>
@@ -140,10 +145,11 @@
       </div>
     </section>
 
-    <section class="seo-cta" id="contact"><div class="container reveal"><div class="seo-cta-card"><div><h2>Chọn Proxy phù hợp với ứng dụng của bạn</h2><p>Bắt đầu từ giao thức mà phần mềm hỗ trợ, sau đó mới cân nhắc số lượng IP.</p></div><div class="seo-cta-actions"><a class="btn btn-light" href="#pricing">Chọn Proxy →</a><a class="btn btn-glass" href="blog.html">Đọc hướng dẫn</a></div></div></div></section>
+    <section class="seo-cta" id="contact"><div class="container reveal"><div class="seo-cta-card"><div><h2>Chọn Proxy phù hợp với ứng dụng của bạn</h2><p>Bắt đầu từ giao thức mà phần mềm hỗ trợ, sau đó mới cân nhắc số lượng IP.</p></div><div class="seo-cta-actions"><a class="btn btn-light" href="#pricing">Chọn Proxy →</a><a class="btn btn-glass" href="contact.html">Liên hệ tư vấn</a></div></div></div></section>
   </main>
 
-  <footer class="footer"><div class="container footer-inner"><div><a class="brand footer-brand" href="index.html"><span class="brand-mark">☁</span><strong>Cloud<span>VPS</span></strong></a><p>VPS & Proxy tối ưu cho game mobile.</p></div><div class="footer-links"><a href="vps.html">VPS Game</a><a href="proxy.html">Proxy Game</a><a href="blog.html">Blog</a><a href="index.html#contact">Liên hệ</a></div><span class="copyright">© 2026 CloudVPS</span></div></footer>
+  <footer class="footer"><div class="container footer-inner"><div><a class="brand footer-brand" href="index.html"><span class="brand-mark">☁</span><strong>Cloud<span>VPS</span></strong></a><p>VPS & Proxy tối ưu cho game mobile.</p></div><div class="footer-links"><a href="vps.html">VPS Game</a><a href="proxy.html">Proxy Game</a><a href="blog.html">Blog</a><a href="contact.html">Liên hệ</a></div><span class="copyright">© 2026 CloudVPS</span></div></footer>
+  <script src="bottom-dock.js?v=2"></script>
   <script src="script.js"></script>
 </body>
 </html>

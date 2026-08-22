@@ -1,11 +1,6 @@
 (() => {
   if (document.querySelector('.bottom-dock')) return;
 
-  const css = document.createElement('link');
-  css.rel = 'stylesheet';
-  css.href = 'bottom-dock.css?v=1';
-  document.head.appendChild(css);
-
   const icons = {
     home: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3.5 10.5 12 3.8l8.5 6.7"/><path d="M5.5 9.8v9.4h13V9.8"/><path d="M9.5 19.2v-5.5h5v5.5"/></svg>',
     vps: '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="4.5" width="16" height="6" rx="2"/><rect x="4" y="13.5" width="16" height="6" rx="2"/><path d="M8 7.5h.01M8 16.5h.01M12 7.5h5M12 16.5h5"/></svg>',
@@ -47,5 +42,4 @@
 
   nav.appendChild(inner);
   document.body.appendChild(nav);
-  document.body.classList.add('bottom-dock-enabled');
 })();
