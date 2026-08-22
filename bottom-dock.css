@@ -145,6 +145,27 @@
 .price-card li,.feature-card p,.service-content p{font-size:13px!important}
 .server-specs span,.trust-row span{font-size:11px!important}
 
+.blog-kicker,.category-tabs button{font-size:12px!important}
+.featured-server small,.post-meta,.breadcrumbs,.article-author,.cover-dashboard-head span,.article-toc a{font-size:11px!important}
+.post-category,.cover-stats small,.article-share span,.post-footer{font-size:10px!important}
+.read-link,.latest-head p{font-size:13px!important}
+.post-body p,.article-table th,.article-table td,.article-cta p,.blog-cta-card p{font-size:12px!important}
+.post-footer a{font-size:11px!important}
+.article-toc strong{font-size:12px!important}
+
+.contact-kicker,.contact-badges div{font-size:12px!important}
+.support-head small,.contact-channel small,.form-head>span,.quick-help>span,.contact-cta-card>div:first-child>span{font-size:10.5px!important}
+.support-status,.support-row small,.support-float span,.contact-channel p,.response-card p,.field>span,.form-status{font-size:11px!important}
+.contact-channel strong,.response-card strong{font-size:13px!important}
+.form-head p,.quick-help p,.contact-cta-card p,.copy-btn{font-size:12px!important}
+.field input,.field select,.field textarea{font-size:13px!important}
+
+/* Reduce the most expensive persistent blur layers without changing the design. */
+.header{backdrop-filter:blur(14px)!important;-webkit-backdrop-filter:blur(14px)!important}
+.glass{backdrop-filter:blur(12px)!important;-webkit-backdrop-filter:blur(12px)!important}
+.support-panel,.featured-server,.cover-dashboard{backdrop-filter:blur(11px)!important;-webkit-backdrop-filter:blur(11px)!important}
+.thumb-icon{backdrop-filter:blur(7px)!important;-webkit-backdrop-filter:blur(7px)!important}
+
 @media(prefers-reduced-motion:reduce){
   .bottom-dock__item,.bottom-dock__item::before,.bottom-dock__item::after,.bottom-dock__icon{transition:none!important}
 }
