@@ -5,7 +5,7 @@ document.head.appendChild(smoothStylesheet);
 
 const faqStylesheet = document.createElement('link');
 faqStylesheet.rel = 'stylesheet';
-faqStylesheet.href = 'faq-smooth.css?v=1';
+faqStylesheet.href = 'faq-smooth.css?v=2';
 document.head.appendChild(faqStylesheet);
 
 const menuBtn = document.getElementById('menuBtn');
@@ -88,84 +88,83 @@ window.addEventListener('scroll', () => {
 
 syncActiveNav();
 
-// Smooth FAQ accordion animation for native <details> elements.
-const faqDetails = document.querySelectorAll('.faq-list details');
-const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+/*
+ * Ultra-smooth FAQ accordion.
+ * Native <details> is progressively enhanced into a grid-track accordion.
+ * This avoids animating explicit heights and removes the jump caused by browser details layout.
+ */
+const nativeFaqItems = [...document.querySelectorAll('.faq-list details')];
 
-if (!reduceMotion) {
-  faqDetails.forEach(details => {
+if (nativeFaqItems.length) {
+  const upgradedItems = nativeFaqItems.map((details, index) => {
     const summary = details.querySelector('summary');
-    if (!summary) return;
+    if (!summary) return null;
 
-    let animation = null;
-    let isClosing = false;
-    let isExpanding = false;
+    const wasOpen = details.open;
+    const item = document.createElement('div');
+    item.className = `faq-item${wasOpen ? ' is-open' : ''}`;
 
-    const borderHeight = () => {
-      const styles = getComputedStyle(details);
-      return (parseFloat(styles.borderTopWidth) || 0) + (parseFloat(styles.borderBottomWidth) || 0);
-    };
+    const button = document.createElement('button');
+    button.type = 'button';
+    button.className = 'faq-question';
+    button.setAttribute('aria-expanded', String(wasOpen));
 
-    const finishAnimation = open => {
-      details.open = open;
-      animation = null;
-      isClosing = false;
-      isExpanding = false;
-      details.style.height = '';
-      details.style.overflow = '';
-      details.classList.remove('is-animating');
-    };
+    const answerId = `faq-answer-${index + 1}`;
+    button.setAttribute('aria-controls', answerId);
 
-    const shrink = () => {
-      const startHeight = `${details.getBoundingClientRect().height}px`;
-      const endHeight = `${summary.getBoundingClientRect().height + borderHeight()}px`;
+    const questionText = document.createElement('span');
+    questionText.textContent = summary.textContent.trim();
 
-      if (animation) animation.cancel();
-      isClosing = true;
-      details.classList.add('is-animating');
-      details.style.overflow = 'hidden';
+    const icon = document.createElement('span');
+    icon.className = 'faq-icon';
+    icon.setAttribute('aria-hidden', 'true');
 
-      animation = details.animate(
-        { height: [startHeight, endHeight] },
-        { duration: 320, easing: 'cubic-bezier(.2,.8,.2,1)' }
-      );
+    button.append(questionText, icon);
 
-      animation.onfinish = () => finishAnimation(false);
-      animation.oncancel = () => { isClosing = false; };
-    };
+    const answer = document.createElement('div');
+    answer.className = 'faq-answer';
+    answer.id = answerId;
+    answer.setAttribute('role', 'region');
+    answer.setAttribute('aria-hidden', String(!wasOpen));
 
-    const expand = () => {
-      const startHeight = `${details.getBoundingClientRect().height}px`;
-      const endHeight = `${details.scrollHeight + borderHeight()}px`;
+    const answerInner = document.createElement('div');
+    answerInner.className = 'faq-answer-inner';
 
-      if (animation) animation.cancel();
-      isExpanding = true;
-      details.classList.add('is-animating');
-      details.style.overflow = 'hidden';
+    const answerContent = document.createElement('div');
+    answerContent.className = 'faq-answer-content';
 
-      animation = details.animate(
-        { height: [startHeight, endHeight] },
-        { duration: 340, easing: 'cubic-bezier(.2,.8,.2,1)' }
-      );
+    [...details.children].forEach(child => {
+      if (child !== summary) answerContent.appendChild(child);
+    });
 
-      animation.onfinish = () => finishAnimation(true);
-      animation.oncancel = () => { isExpanding = false; };
-    };
+    answerInner.appendChild(answerContent);
+    answer.appendChild(answerInner);
+    item.append(button, answer);
+    details.replaceWith(item);
 
-    const openDetails = () => {
-      details.style.height = `${details.getBoundingClientRect().height}px`;
-      details.open = true;
-      requestAnimationFrame(expand);
-    };
+    return { item, button, answer };
+  }).filter(Boolean);
 
-    summary.addEventListener('click', event => {
-      event.preventDefault();
+  const setOpenState = (entry, shouldOpen) => {
+    entry.item.classList.toggle('is-open', shouldOpen);
+    entry.button.setAttribute('aria-expanded', String(shouldOpen));
+    entry.answer.setAttribute('aria-hidden', String(!shouldOpen));
+  };
 
-      if (isClosing || !details.open) {
-        openDetails();
-      } else if (isExpanding || details.open) {
-        shrink();
+  upgradedItems.forEach(entry => {
+    entry.button.addEventListener('click', () => {
+      const opening = !entry.item.classList.contains('is-open');
+
+      /* Keep the section calm: only one answer stays open at a time. */
+      if (opening) {
+        upgradedItems.forEach(other => {
+          if (other !== entry && other.item.classList.contains('is-open')) {
+            setOpenState(other, false);
+          }
+        });
       }
+
+      requestAnimationFrame(() => setOpenState(entry, opening));
     });
   });
 }
