@@ -1,3 +1,17 @@
+(() => {
+  let session = null;
+  let profile = null;
+  try {
+    session = JSON.parse(localStorage.getItem('cloudvps_demo_session_v1') || 'null');
+    profile = JSON.parse(localStorage.getItem('cloudvps_demo_profile_v1') || 'null');
+  } catch (_) {}
+  document.querySelectorAll('.login').forEach(link => {
+    const signedIn = session && profile && session.email === profile.email;
+    link.href = signedIn ? 'dashboard.html' : 'login.html';
+    link.textContent = signedIn ? 'Tài khoản' : 'Đăng nhập';
+  });
+})();
+
 const menuBtn = document.getElementById('menuBtn');
 const menu = document.getElementById('menu');
 
