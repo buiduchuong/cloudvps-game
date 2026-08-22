@@ -5,6 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="theme-color" content="#ffffff" />
   <meta name="description" content="CloudVPS - VPS & Proxy tối ưu cho game mobile, low ping, ổn định và hỗ trợ 24/7." />
+  <meta name="robots" content="index,follow,max-image-preview:large" />
+  <link rel="canonical" href="https://buiduchuong.github.io/cloudvps-game/" />
   <title>CloudVPS - VPS & Proxy cho game mobile</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -17,23 +19,18 @@
 
   <header class="header">
     <div class="container nav">
-      <a class="brand" href="#home">
-        <span class="brand-mark">☁</span>
-        <strong>Cloud<span>VPS</span></strong>
-      </a>
-
+      <a class="brand" href="#home"><span class="brand-mark">☁</span><strong>Cloud<span>VPS</span></strong></a>
       <nav class="menu" id="menu">
         <a class="active" href="#home">Trang chủ</a>
-        <a href="#services">Dịch vụ</a>
+        <a href="vps.html">VPS Game</a>
+        <a href="proxy.html">Proxy Game</a>
         <a href="#pricing">Bảng giá</a>
-        <a href="#features">Ưu điểm</a>
         <a href="blog.html">Blog</a>
         <a href="#contact">Liên hệ</a>
       </nav>
-
       <div class="nav-actions">
         <a class="login" href="#">Đăng nhập</a>
-        <a class="btn btn-small" href="#pricing" data-tab-target="vps">Thuê VPS</a>
+        <a class="btn btn-small" href="vps.html">Thuê VPS</a>
         <button class="menu-btn" id="menuBtn" aria-label="Mở menu">☰</button>
       </div>
     </div>
@@ -46,201 +43,54 @@
           <div class="eyebrow">🎮 VPS & PROXY TỐI ƯU CHO GAME MOBILE</div>
           <h1>Chạy game ổn định.<br><span>Low Ping, dễ quản lý.</span></h1>
           <p>VPS và Proxy dành cho nhu cầu treo game, chạy nhiều tài khoản và vận hành server game mobile với kết nối ổn định.</p>
-
-          <div class="hero-actions">
-            <a class="btn" href="#pricing" data-tab-target="vps">Thuê VPS ngay <span>→</span></a>
-            <a class="btn btn-ghost" href="#pricing" data-tab-target="proxy">Xem Proxy</a>
-          </div>
-
-          <div class="trust-row">
-            <div><strong>99.9%</strong><span>Uptime</span></div>
-            <div><strong>10 Gbps</strong><span>Network</span></div>
-            <div><strong>24/7</strong><span>Hỗ trợ</span></div>
-          </div>
+          <div class="hero-actions"><a class="btn" href="vps.html">Thuê VPS ngay <span>→</span></a><a class="btn btn-ghost" href="proxy.html">Xem Proxy</a></div>
+          <div class="trust-row"><div><strong>99.9%</strong><span>Uptime</span></div><div><strong>10 Gbps</strong><span>Network</span></div><div><strong>24/7</strong><span>Hỗ trợ</span></div></div>
         </div>
 
         <div class="hero-visual reveal delay-1">
-          <div class="orbit orbit-a"></div>
-          <div class="orbit orbit-b"></div>
-
+          <div class="orbit orbit-a"></div><div class="orbit orbit-b"></div>
           <div class="main-server-card glass floating-card">
-            <div class="server-head">
-              <div>
-                <small>VPS GAME PREMIUM</small>
-                <strong>Vietnam Datacenter</strong>
-              </div>
-              <span class="status"><i></i> Online</span>
-            </div>
-
-            <div class="server-usage">
-              <div><span>CPU</span><div class="meter"><i style="width:38%"></i></div><b>38%</b></div>
-              <div><span>RAM</span><div class="meter violet"><i style="width:54%"></i></div><b>54%</b></div>
-              <div><span>NVMe</span><div class="meter cyan"><i style="width:70%"></i></div><b>70%</b></div>
-            </div>
-
-            <div class="server-specs">
-              <div><strong>4 Core</strong><span>CPU</span></div>
-              <div><strong>8 GB</strong><span>RAM</span></div>
-              <div><strong>100 GB</strong><span>NVMe</span></div>
-            </div>
+            <div class="server-head"><div><small>VPS GAME PREMIUM</small><strong>Vietnam Datacenter</strong></div><span class="status"><i></i> Online</span></div>
+            <div class="server-usage"><div><span>CPU</span><div class="meter"><i style="width:38%"></i></div><b>38%</b></div><div><span>RAM</span><div class="meter violet"><i style="width:54%"></i></div><b>54%</b></div><div><span>NVMe</span><div class="meter cyan"><i style="width:70%"></i></div><b>70%</b></div></div>
+            <div class="server-specs"><div><strong>4 Core</strong><span>CPU</span></div><div><strong>8 GB</strong><span>RAM</span></div><div><strong>100 GB</strong><span>NVMe</span></div></div>
           </div>
-
-          <div class="mini-proxy glass floating-card-secondary">
-            <div class="proxy-icon">◎</div>
-            <div><strong>Proxy Game</strong><span>HTTP / SOCKS5 · IP Việt Nam</span></div>
-          </div>
-
-          <div class="ping-badge glass">
-            <span>⚡</span>
-            <div><strong>Low Ping</strong><small>Kết nối ổn định</small></div>
-          </div>
+          <div class="mini-proxy glass floating-card-secondary"><div class="proxy-icon">◎</div><div><strong>Proxy Game</strong><span>HTTP / SOCKS5 · IP Việt Nam</span></div></div>
+          <div class="ping-badge glass"><span>⚡</span><div><strong>Low Ping</strong><small>Kết nối ổn định</small></div></div>
         </div>
       </div>
     </section>
 
     <section class="services section" id="services">
       <div class="container">
-        <div class="section-heading reveal">
-          <span class="section-label">DỊCH VỤ</span>
-          <h2>Chọn đúng thứ bạn cần</h2>
-          <p>Không quá nhiều gói rối mắt. Chọn VPS để chạy game hoặc Proxy để tách IP và quản lý nhiều tài khoản.</p>
-        </div>
-
+        <div class="section-heading reveal"><span class="section-label">DỊCH VỤ</span><h2>Chọn đúng thứ bạn cần</h2><p>Không quá nhiều gói rối mắt. Chọn VPS để chạy game hoặc Proxy để tách IP và quản lý nhiều tài khoản.</p></div>
         <div class="service-grid">
-          <article class="service-card service-vps reveal">
-            <div class="service-icon">▤</div>
-            <div class="service-content">
-              <span class="service-kicker">VPS GAME</span>
-              <h3>Máy chủ mạnh, chạy lâu dài</h3>
-              <p>Windows/Linux, NVMe, IPv4 riêng và hỗ trợ mở port theo nhu cầu.</p>
-              <div class="service-tags"><span>NinjaSchool</span><span>Ngọc Rồng Online</span><span>Game mobile khác</span></div>
-              <a href="#pricing" class="text-link" data-tab-target="vps">Xem gói VPS →</a>
-            </div>
-          </article>
-
-          <article class="service-card service-proxy reveal delay-1">
-            <div class="service-icon proxy-service-icon">◎</div>
-            <div class="service-content">
-              <span class="service-kicker cyan-text">PROXY GAME</span>
-              <h3>IP sạch, tốc độ ổn định</h3>
-              <p>HTTP/HTTPS hoặc SOCKS5, phù hợp nhiều tài khoản và các công cụ automation.</p>
-              <div class="service-tags proxy-tags"><span>HTTP/HTTPS</span><span>SOCKS5</span><span>Whitelist</span></div>
-              <a href="#pricing" class="text-link cyan-text" data-tab-target="proxy">Xem gói Proxy →</a>
-            </div>
-          </article>
+          <article class="service-card service-vps reveal"><div class="service-icon">▤</div><div class="service-content"><span class="service-kicker">VPS GAME</span><h3>Máy chủ mạnh, chạy lâu dài</h3><p>Windows/Linux, NVMe, IPv4 riêng và hỗ trợ mở port theo nhu cầu.</p><div class="service-tags"><span>NinjaSchool</span><span>Ngọc Rồng Online</span><span>Game mobile khác</span></div><a href="vps.html" class="text-link">Xem chi tiết VPS →</a></div></article>
+          <article class="service-card service-proxy reveal delay-1"><div class="service-icon proxy-service-icon">◎</div><div class="service-content"><span class="service-kicker cyan-text">PROXY GAME</span><h3>IP sạch, tốc độ ổn định</h3><p>HTTP/HTTPS hoặc SOCKS5, phù hợp nhiều tài khoản và các công cụ automation.</p><div class="service-tags proxy-tags"><span>HTTP/HTTPS</span><span>SOCKS5</span><span>Whitelist</span></div><a href="proxy.html" class="text-link cyan-text">Xem chi tiết Proxy →</a></div></article>
         </div>
       </div>
     </section>
 
     <section class="pricing section" id="pricing">
       <div class="container">
-        <div class="pricing-top reveal">
-          <div>
-            <span class="section-label">BẢNG GIÁ</span>
-            <h2>Gói phổ biến, dễ chọn</h2>
-          </div>
-          <div class="service-tabs" aria-label="Chọn loại dịch vụ">
-            <button class="active" data-tab="vps">VPS</button>
-            <button data-tab="proxy">Proxy</button>
-          </div>
-        </div>
-
-        <div class="pricing-panel active" id="panel-vps">
-          <div class="pricing-grid">
-            <article class="price-card reveal">
-              <span class="plan">STARTER</span>
-              <h3>VPS 2GB</h3>
-              <div class="price"><strong>79.000đ</strong><span>/ tháng</span></div>
-              <ul><li>1 vCPU · 2 GB RAM</li><li>30 GB NVMe SSD</li><li>1 IPv4 riêng</li></ul>
-              <a class="btn btn-outline btn-full" href="#">Thuê ngay</a>
-            </article>
-
-            <article class="price-card featured reveal delay-1">
-              <div class="popular">PHỔ BIẾN</div>
-              <span class="plan">PERFORMANCE</span>
-              <h3>VPS 4GB</h3>
-              <div class="price"><strong>149.000đ</strong><span>/ tháng</span></div>
-              <ul><li>2 vCPU · 4 GB RAM</li><li>60 GB NVMe SSD</li><li>Anti-DDoS cơ bản</li></ul>
-              <a class="btn btn-full" href="#">Thuê ngay</a>
-            </article>
-
-            <article class="price-card reveal delay-2">
-              <span class="plan">PREMIUM</span>
-              <h3>VPS 8GB</h3>
-              <div class="price"><strong>279.000đ</strong><span>/ tháng</span></div>
-              <ul><li>4 vCPU · 8 GB RAM</li><li>100 GB NVMe SSD</li><li>Snapshot miễn phí</li></ul>
-              <a class="btn btn-outline btn-full" href="#">Thuê ngay</a>
-            </article>
-          </div>
-        </div>
-
-        <div class="pricing-panel" id="panel-proxy">
-          <div class="pricing-grid proxy-price-grid">
-            <article class="price-card reveal">
-              <span class="plan cyan-text">PROXY VN</span>
-              <h3>HTTP / HTTPS</h3>
-              <div class="price proxy-price"><strong>29.000đ</strong><span>/ IP</span></div>
-              <ul><li>IP Việt Nam sạch</li><li>User / Password</li><li>Thay IP nhanh</li></ul>
-              <a class="btn btn-outline btn-full" href="#">Mua ngay</a>
-            </article>
-
-            <article class="price-card featured proxy-featured reveal delay-1">
-              <div class="popular cyan-popular">PHỔ BIẾN</div>
-              <span class="plan cyan-text">SOCKS5</span>
-              <h3>Proxy tốc độ cao</h3>
-              <div class="price proxy-price"><strong>39.000đ</strong><span>/ IP</span></div>
-              <ul><li>SOCKS5 ổn định</li><li>Whitelist IP</li><li>Phù hợp multi-account</li></ul>
-              <a class="btn btn-cyan btn-full" href="#">Mua ngay</a>
-            </article>
-          </div>
-        </div>
+        <div class="pricing-top reveal"><div><span class="section-label">BẢNG GIÁ</span><h2>Gói phổ biến, dễ chọn</h2></div><div class="service-tabs" aria-label="Chọn loại dịch vụ"><button class="active" data-tab="vps">VPS</button><button data-tab="proxy">Proxy</button></div></div>
+        <div class="pricing-panel active" id="panel-vps"><div class="pricing-grid">
+          <article class="price-card reveal"><span class="plan">STARTER</span><h3>VPS 2GB</h3><div class="price"><strong>79.000đ</strong><span>/ tháng</span></div><ul><li>1 vCPU · 2 GB RAM</li><li>30 GB NVMe SSD</li><li>1 IPv4 riêng</li></ul><a class="btn btn-outline btn-full" href="vps.html#pricing">Xem chi tiết</a></article>
+          <article class="price-card featured reveal delay-1"><div class="popular">PHỔ BIẾN</div><span class="plan">PERFORMANCE</span><h3>VPS 4GB</h3><div class="price"><strong>149.000đ</strong><span>/ tháng</span></div><ul><li>2 vCPU · 4 GB RAM</li><li>60 GB NVMe SSD</li><li>Anti-DDoS cơ bản</li></ul><a class="btn btn-full" href="vps.html#pricing">Xem chi tiết</a></article>
+          <article class="price-card reveal delay-2"><span class="plan">PREMIUM</span><h3>VPS 8GB</h3><div class="price"><strong>279.000đ</strong><span>/ tháng</span></div><ul><li>4 vCPU · 8 GB RAM</li><li>100 GB NVMe SSD</li><li>Snapshot miễn phí</li></ul><a class="btn btn-outline btn-full" href="vps.html#pricing">Xem chi tiết</a></article>
+        </div></div>
+        <div class="pricing-panel" id="panel-proxy"><div class="pricing-grid proxy-price-grid">
+          <article class="price-card reveal"><span class="plan cyan-text">PROXY VN</span><h3>HTTP / HTTPS</h3><div class="price proxy-price"><strong>29.000đ</strong><span>/ IP</span></div><ul><li>IP Việt Nam sạch</li><li>User / Password</li><li>Thay IP nhanh</li></ul><a class="btn btn-outline btn-full" href="proxy.html#pricing">Xem chi tiết</a></article>
+          <article class="price-card featured proxy-featured reveal delay-1"><div class="popular cyan-popular">PHỔ BIẾN</div><span class="plan cyan-text">SOCKS5</span><h3>Proxy tốc độ cao</h3><div class="price proxy-price"><strong>39.000đ</strong><span>/ IP</span></div><ul><li>SOCKS5 ổn định</li><li>Whitelist IP</li><li>Phù hợp multi-account</li></ul><a class="btn btn-cyan btn-full" href="proxy.html#pricing">Xem chi tiết</a></article>
+        </div></div>
       </div>
     </section>
 
-    <section class="features section" id="features">
-      <div class="container">
-        <div class="section-heading reveal">
-          <span class="section-label">ƯU ĐIỂM</span>
-          <h2>Đủ mạnh cho nhu cầu game</h2>
-        </div>
+    <section class="features section" id="features"><div class="container"><div class="section-heading reveal"><span class="section-label">ƯU ĐIỂM</span><h2>Đủ mạnh cho nhu cầu game</h2></div><div class="feature-grid"><article class="feature-card reveal"><span>⚡</span><h3>Low Ping</h3><p>Tối ưu đường truyền để kết nối ổn định hơn.</p></article><article class="feature-card reveal delay-1"><span>♙</span><h3>Treo game ổn định</h3><p>Uptime cao, phù hợp chạy lâu dài.</p></article><article class="feature-card reveal delay-2"><span>◇</span><h3>Anti-DDoS</h3><p>Tăng khả năng bảo vệ máy chủ trước lưu lượng xấu.</p></article><article class="feature-card reveal delay-3"><span>◉</span><h3>Hỗ trợ 24/7</h3><p>Hỗ trợ cấu hình khi bạn cần.</p></article></div></div></section>
 
-        <div class="feature-grid">
-          <article class="feature-card reveal"><span>⚡</span><h3>Low Ping</h3><p>Tối ưu đường truyền để kết nối ổn định hơn.</p></article>
-          <article class="feature-card reveal delay-1"><span>♙</span><h3>Treo game ổn định</h3><p>Uptime cao, phù hợp chạy lâu dài.</p></article>
-          <article class="feature-card reveal delay-2"><span>◇</span><h3>Anti-DDoS</h3><p>Tăng khả năng bảo vệ máy chủ trước lưu lượng xấu.</p></article>
-          <article class="feature-card reveal delay-3"><span>◉</span><h3>Hỗ trợ 24/7</h3><p>Hỗ trợ cấu hình khi bạn cần.</p></article>
-        </div>
-      </div>
-    </section>
-
-    <section class="cta" id="contact">
-      <div class="container reveal">
-        <div class="cta-card">
-          <div>
-            <span>BẮT ĐẦU NHANH</span>
-            <h2>VPS hoặc Proxy cho game chỉ trong vài phút.</h2>
-            <p>Chọn gói phù hợp và bắt đầu sử dụng ngay.</p>
-          </div>
-          <div class="cta-actions">
-            <a class="btn btn-light" href="#pricing" data-tab-target="vps">Thuê VPS →</a>
-            <a class="btn btn-glass" href="#pricing" data-tab-target="proxy">Mua Proxy</a>
-          </div>
-        </div>
-      </div>
-    </section>
+    <section class="cta" id="contact"><div class="container reveal"><div class="cta-card"><div><span>BẮT ĐẦU NHANH</span><h2>VPS hoặc Proxy cho game chỉ trong vài phút.</h2><p>Xem trang dịch vụ riêng để chọn đúng cấu hình và giao thức.</p></div><div class="cta-actions"><a class="btn btn-light" href="vps.html">Xem VPS →</a><a class="btn btn-glass" href="proxy.html">Xem Proxy</a></div></div></div></section>
   </main>
 
-  <footer class="footer">
-    <div class="container footer-inner">
-      <div>
-        <a class="brand footer-brand" href="#home"><span class="brand-mark">☁</span><strong>Cloud<span>VPS</span></strong></a>
-        <p>VPS & Proxy tối ưu cho game mobile.</p>
-      </div>
-      <div class="footer-links"><a href="#services">Dịch vụ</a><a href="#pricing">Bảng giá</a><a href="#features">Ưu điểm</a><a href="blog.html">Blog</a><a href="#contact">Liên hệ</a></div>
-      <span class="copyright">© 2026 CloudVPS</span>
-    </div>
-  </footer>
-
+  <footer class="footer"><div class="container footer-inner"><div><a class="brand footer-brand" href="#home"><span class="brand-mark">☁</span><strong>Cloud<span>VPS</span></strong></a><p>VPS & Proxy tối ưu cho game mobile.</p></div><div class="footer-links"><a href="vps.html">VPS Game</a><a href="proxy.html">Proxy Game</a><a href="blog.html">Blog</a><a href="#contact">Liên hệ</a></div><span class="copyright">© 2026 CloudVPS</span></div></footer>
   <script src="script.js"></script>
 </body>
 </html>
