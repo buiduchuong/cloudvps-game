@@ -1,3 +1,8 @@
+const contactNavLinks = document.querySelectorAll('.menu a, .footer-links a');
+contactNavLinks.forEach(link => {
+  if (link.textContent.trim().toLowerCase() === 'liên hệ') link.setAttribute('href', 'contact.html');
+});
+
 const smoothStylesheet = document.createElement('link');
 smoothStylesheet.rel = 'stylesheet';
 smoothStylesheet.href = 'smooth-overrides.css?v=1';
@@ -184,7 +189,6 @@ if (nativeFaqItems.length) {
 
     setState(entry, true);
 
-    // Force one final layout calculation, then animate only transforms/clip-path.
     const lastRects = getRects();
     const lastHeight = entry.item.getBoundingClientRect().height;
     const revealHeight = Math.max(0, lastHeight - firstHeight);
@@ -260,7 +264,6 @@ if (nativeFaqItems.length) {
     );
 
     hideAnimation.onfinish = () => {
-      // Apply the compact layout at the exact moment compositor animations finish.
       setState(entry, false);
       followingAnimations.forEach(animation => animation.cancel());
       entry.animating = false;
