@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#0d1731" />
+  <meta name="robots" content="noindex,nofollow" />
+  <title>Đăng nhập khách hàng | CloudVPS</title>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="auth.css" />
+</head>
+<body class="auth-page">
+  <main class="auth-shell">
+    <section class="auth-side">
+      <a class="brand auth-brand" href="index.html"><span class="brand-mark">☁</span><strong>Cloud<span>VPS</span></strong></a>
+      <div class="auth-side-copy">
+        <span class="eyebrow">KHU VỰC KHÁCH HÀNG</span>
+        <h1>Quản lý VPS & Proxy <span>ở một nơi.</span></h1>
+        <p>Đăng nhập để xem dịch vụ, đơn hàng, số dư, thời hạn và các thao tác quản lý tài khoản.</p>
+        <div class="auth-points">
+          <div class="auth-point"><i>✓</i><span>Theo dõi VPS & Proxy đang sử dụng</span></div>
+          <div class="auth-point"><i>✓</i><span>Xem đơn hàng và lịch sử thanh toán</span></div>
+          <div class="auth-point"><i>✓</i><span>Gia hạn và quản lý hồ sơ nhanh hơn</span></div>
+        </div>
+      </div>
+      <p class="auth-note">Bản hiện tại đang chạy trên GitHub Pages nên khu vực tài khoản là chế độ demo frontend. Không nhập mật khẩu thật mà bạn đang sử dụng ở nơi khác.</p>
+    </section>
+
+    <section class="auth-main">
+      <div class="auth-card">
+        <div class="auth-head">
+          <span class="auth-kicker">ĐĂNG NHẬP</span>
+          <h2>Chào mừng trở lại</h2>
+          <p>Dùng tài khoản demo đã tạo trên thiết bị này hoặc mở nhanh tài khoản mẫu.</p>
+        </div>
+
+        <form class="auth-form" id="loginForm" novalidate>
+          <label class="auth-field"><span>Email</span><input id="email" name="email" type="email" autocomplete="email" placeholder="email@example.com" required /></label>
+          <label class="auth-field"><span>Mật khẩu demo</span><div class="auth-input-wrap"><input id="password" name="password" type="password" autocomplete="current-password" placeholder="Tối thiểu 6 ký tự" required /><button type="button" class="password-toggle" data-password-toggle="password" aria-pressed="false">Hiện</button></div></label>
+          <div class="auth-row"><label class="remember"><input type="checkbox" checked /> <span>Ghi nhớ phiên trên thiết bị này</span></label><a class="auth-link" href="contact.html">Quên mật khẩu?</a></div>
+          <button class="btn auth-submit" type="submit">Đăng nhập <span>→</span></button>
+          <div class="auth-status" id="authStatus" role="status" aria-live="polite"></div>
+        </form>
+
+        <div class="auth-divider"><span>HOẶC</span></div>
+        <button class="demo-btn" type="button" id="demoLogin">Mở tài khoản demo ngay</button>
+        <p class="auth-switch">Chưa có tài khoản? <a href="register.html">Đăng ký →</a></p>
+        <div class="auth-warning"><strong>Lưu ý:</strong> đây là luồng demo để xem frontend. Mật khẩu không được lưu hay xác thực. Khi nối backend, đăng nhập sẽ dùng API HTTPS + hash mật khẩu phía server.</div>
+      </div>
+    </section>
+  </main>
+  <script src="auth.js"></script>
+</body>
+</html>
