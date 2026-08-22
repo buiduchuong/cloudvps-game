@@ -1,0 +1,85 @@
+/* Smooth FAQ accordion for VPS / Proxy service pages */
+.faq-list details {
+  overflow: hidden;
+  transition: border-color .26s ease, box-shadow .26s ease, background-color .26s ease;
+}
+
+.faq-list details.is-animating {
+  will-change: height;
+}
+
+.faq-list details[open] {
+  border-color: rgba(49,88,243,.22);
+  box-shadow: 0 10px 26px rgba(29,43,82,.055);
+  background: #fff;
+}
+
+.proxy-page .faq-list details[open] {
+  border-color: rgba(29,196,202,.28);
+}
+
+.faq-list summary {
+  outline: none;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.faq-list summary::-webkit-details-marker {
+  display: none;
+}
+
+.faq-list summary::marker {
+  content: "";
+}
+
+.faq-list summary:after {
+  content: "+" !important;
+  width: 24px;
+  height: 24px;
+  flex: 0 0 24px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  color: var(--primary);
+  line-height: 1;
+  transform: rotate(0deg) translateZ(0);
+  transform-origin: 50% 50%;
+  transition: transform .3s cubic-bezier(.2,.8,.2,1), color .2s ease, background-color .2s ease;
+  backface-visibility: hidden;
+}
+
+.proxy-page .faq-list summary:after {
+  color: #0baab2;
+}
+
+.faq-list details[open] summary:after {
+  content: "+" !important;
+  transform: rotate(45deg) translateZ(0);
+  background: #f1f4ff;
+}
+
+.proxy-page .faq-list details[open] summary:after {
+  background: #ecffff;
+}
+
+.faq-list details > :not(summary) {
+  transform: translateZ(0);
+}
+
+@media (hover:hover) and (pointer:fine) {
+  .faq-list details:not([open]):hover {
+    border-color: #cfd8ea;
+    box-shadow: 0 7px 20px rgba(29,43,82,.035);
+  }
+
+  .faq-list summary:hover:after {
+    background: #f3f5fb;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .faq-list details,
+  .faq-list summary:after {
+    transition: none !important;
+  }
+}
