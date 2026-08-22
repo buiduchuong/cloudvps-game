@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#0c152b" />
+  <meta name="robots" content="noindex,nofollow" />
+  <title>Dashboard khách hàng | CloudVPS</title>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="dashboard.css" />
+</head>
+<body class="dashboard-page">
+  <div class="dashboard-shell">
+    <aside class="dash-sidebar" id="dashSidebar">
+      <a class="brand" href="index.html"><span class="brand-mark">☁</span><strong>Cloud<span>VPS</span></strong></a>
+
+      <nav class="dash-nav" aria-label="Khu vực khách hàng">
+        <a class="active" href="dashboard.html"><i>⌂</i><span>Tổng quan</span></a>
+        <a href="#services"><i>▤</i><span>Dịch vụ của tôi</span></a>
+        <a href="#orders"><i>⌑</i><span>Đơn hàng</span></a>
+        <a href="#profile"><i>◎</i><span>Hồ sơ tài khoản</span></a>
+        <a href="vps.html"><i>⚡</i><span>Thuê VPS</span></a>
+        <a href="proxy.html"><i>◇</i><span>Mua Proxy</span></a>
+        <button type="button" data-demo-disabled><i>₫</i><span>Nạp tiền</span><b class="soon">SẮP CÓ</b></button>
+        <button type="button" data-demo-disabled><i>?</i><span>Ticket hỗ trợ</span><b class="soon">SẮP CÓ</b></button>
+      </nav>
+
+      <div class="dash-sidebar-foot">
+        <div class="dash-user-mini">
+          <span class="dash-avatar" data-user-initials>CV</span>
+          <div><strong data-user-name>Khách hàng</strong><span data-user-email>email@example.com</span></div>
+        </div>
+        <button class="logout-btn" type="button" data-logout>Đăng xuất</button>
+      </div>
+    </aside>
+
+    <div class="dash-mobile-backdrop" id="dashBackdrop"></div>
+
+    <div class="dash-main">
+      <header class="dash-topbar">
+        <div style="display:flex;align-items:center;gap:12px">
+          <button class="dash-menu-btn" id="dashMenuBtn" type="button" aria-label="Mở menu Dashboard" aria-expanded="false">☰</button>
+          <div><h1>Dashboard khách hàng</h1><p>Quản lý dịch vụ và tài khoản CloudVPS</p></div>
+        </div>
+        <div class="dash-top-actions"><a href="contact.html">Hỗ trợ</a><a href="index.html">Về trang chủ</a></div>
+      </header>
+
+      <main class="dash-content">
+        <section class="welcome-card">
+          <div>
+            <span>WELCOME BACK</span>
+            <h2>Xin chào, <b data-user-name>Khách hàng</b> 👋</h2>
+            <p>Đây là bản xem trước khu vực khách hàng. Sau khi nối backend, dữ liệu VPS, Proxy, đơn hàng và thanh toán sẽ được đồng bộ thật tại đây.</p>
+          </div>
+          <div class="welcome-actions"><a class="btn dash-btn-light" href="vps.html">Thuê VPS</a><a class="btn dash-btn-ghost" href="proxy.html">Mua Proxy</a></div>
+        </section>
+
+        <section class="stats-grid" aria-label="Thống kê tài khoản">
+          <article class="stat-card"><div class="stat-head"><span>Dịch vụ đang chạy</span><i class="stat-icon">▤</i></div><strong>0</strong><small>VPS & Proxy</small></article>
+          <article class="stat-card cyan"><div class="stat-head"><span>Đơn hàng</span><i class="stat-icon">⌑</i></div><strong>0</strong><small>Chưa có đơn hàng</small></article>
+          <article class="stat-card green"><div class="stat-head"><span>Số dư</span><i class="stat-icon">₫</i></div><strong>0đ</strong><small>Ví khách hàng</small></article>
+          <article class="stat-card orange"><div class="stat-head"><span>Sắp hết hạn</span><i class="stat-icon">◷</i></div><strong>0</strong><small>Trong 7 ngày tới</small></article>
+        </section>
+
+        <section class="dash-grid">
+          <div class="panel" id="services">
+            <div class="panel-head"><div><h3>Dịch vụ của tôi</h3><p>VPS và Proxy đang hoạt động</p></div><a href="vps.html">Mua dịch vụ →</a></div>
+            <div class="panel-body">
+              <div class="empty-box"><div class="empty-icon">▤</div><h4>Bạn chưa có dịch vụ nào</h4><p>Khi hệ thống backend được kết nối, các VPS/Proxy đang sử dụng sẽ hiển thị tại đây cùng IP, trạng thái và ngày hết hạn.</p><div class="empty-actions"><a class="mini-action primary" href="vps.html">Thuê VPS</a><a class="mini-action" href="proxy.html">Mua Proxy</a></div></div>
+            </div>
+          </div>
+
+          <div class="panel">
+            <div class="panel-head"><div><h3>Hành động nhanh</h3><p>Truy cập tác vụ thường dùng</p></div></div>
+            <div class="panel-body"><div class="quick-grid">
+              <a class="quick-card" href="vps.html"><i>⚡</i><strong>Thuê VPS</strong><span>Chọn cấu hình game</span></a>
+              <a class="quick-card" href="proxy.html"><i>◎</i><strong>Mua Proxy</strong><span>HTTP / SOCKS5</span></a>
+              <a class="quick-card disabled" href="#" data-demo-disabled><i>₫</i><strong>Nạp tiền</strong><span>Chờ backend</span></a>
+              <a class="quick-card" href="contact.html"><i>?</i><strong>Hỗ trợ</strong><span>Gửi yêu cầu</span></a>
+            </div></div>
+          </div>
+        </section>
+
+        <section class="panel section-panel" id="orders">
+          <div class="panel-head"><div><h3>Đơn hàng gần đây</h3><p>Lịch sử mua VPS, Proxy và gia hạn</p></div><button type="button" data-demo-disabled>Xem tất cả</button></div>
+          <div class="panel-body" style="padding:0;overflow-x:auto">
+            <table class="order-table"><thead><tr><th>Mã đơn</th><th>Dịch vụ</th><th>Tổng tiền</th><th>Trạng thái</th><th>Ngày tạo</th></tr></thead><tbody><tr><td colspan="5" style="text-align:center;padding:30px;color:#8a96a8">Chưa có đơn hàng. Dữ liệu thật sẽ hiển thị sau khi nối backend.</td></tr></tbody></table>
+          </div>
+        </section>
+
+        <section class="dash-grid" id="profile">
+          <div class="panel">
+            <div class="panel-head"><div><h3>Hồ sơ khách hàng</h3><p>Thông tin tài khoản hiện tại</p></div><button type="button" id="editProfileBtn">Chỉnh sửa</button></div>
+            <div class="panel-body"><div class="profile-summary">
+              <div class="profile-line"><span>Họ và tên</span><strong data-user-name>Khách hàng</strong></div>
+              <div class="profile-line"><span>Email</span><strong data-user-email>email@example.com</strong></div>
+              <div class="profile-line"><span>Số điện thoại</span><strong data-user-phone>Chưa cập nhật</strong></div>
+              <div class="profile-line"><span>Loại tài khoản</span><strong data-user-plan>Khách hàng</strong></div>
+              <div class="profile-line"><span>Ngày tạo</span><strong data-user-created>Hôm nay</strong></div>
+            </div></div>
+          </div>
+
+          <div class="panel">
+            <div class="panel-head"><div><h3>Bảo mật tài khoản</h3><p>Trạng thái bản demo</p></div></div>
+            <div class="panel-body">
+              <div class="profile-summary"><div class="profile-line"><span>Mật khẩu</span><strong>Không lưu ở frontend</strong></div><div class="profile-line"><span>2FA</span><strong>Chưa kết nối</strong></div><div class="profile-line"><span>Phiên đăng nhập</span><strong>Demo localStorage</strong></div></div>
+              <div class="security-note"><i>⚠</i><p>Dashboard này chỉ để preview frontend trên GitHub Pages. Không dùng cho dữ liệu khách hàng thật trước khi có backend, database và xác thực phía server.</p></div>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+  </div>
+  <script src="dashboard.js"></script>
+</body>
+</html>
