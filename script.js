@@ -1,36 +1,15 @@
-const bottomDockLoader = document.createElement('script');
-bottomDockLoader.src = 'bottom-dock.js?v=1';
-document.head.appendChild(bottomDockLoader);
-
-const contactNavLinks = document.querySelectorAll('.menu a, .footer-links a');
-contactNavLinks.forEach(link => {
-  if (link.textContent.trim().toLowerCase() === 'liên hệ') link.setAttribute('href', 'contact.html');
-});
-
-const smoothStylesheet = document.createElement('link');
-smoothStylesheet.rel = 'stylesheet';
-smoothStylesheet.href = 'smooth-overrides.css?v=1';
-document.head.appendChild(smoothStylesheet);
-
-const faqStylesheet = document.createElement('link');
-faqStylesheet.rel = 'stylesheet';
-faqStylesheet.href = 'faq-smooth.css?v=3';
-document.head.appendChild(faqStylesheet);
-
 const menuBtn = document.getElementById('menuBtn');
 const menu = document.getElementById('menu');
 
 menuBtn?.addEventListener('click', () => {
-  menu.classList.toggle('show');
-  menuBtn.textContent = menu.classList.contains('show') ? '✕' : '☰';
+  menu?.classList.toggle('show');
+  menuBtn.textContent = menu?.classList.contains('show') ? '✕' : '☰';
 });
 
 document.querySelectorAll('.menu a').forEach(link => {
   link.addEventListener('click', () => {
     menu?.classList.remove('show');
     if (menuBtn) menuBtn.textContent = '☰';
-    document.querySelectorAll('.menu a').forEach(item => item.classList.remove('active'));
-    link.classList.add('active');
   });
 });
 
@@ -97,11 +76,8 @@ window.addEventListener('scroll', () => {
 
 syncActiveNav();
 
-/*
- * FAQ accordion - FLIP animation.
- * The previous grid-track transition recalculated layout every animation frame.
- * Here layout changes once, while neighbouring cards move with compositor transforms.
- */
+/* FAQ accordion — FLIP animation. Layout changes once; neighbouring cards
+   move on compositor transforms instead of recalculating layout every frame. */
 const nativeFaqItems = [...document.querySelectorAll('.faq-list details')];
 const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
@@ -152,7 +128,7 @@ if (nativeFaqItems.length) {
     return { item, button, answer, answerContent, animating: false };
   }).filter(Boolean);
 
-  const duration = 380;
+  const duration = 360;
   const easing = 'cubic-bezier(.22,1,.36,1)';
 
   const setState = (entry, open) => {
@@ -166,20 +142,14 @@ if (nativeFaqItems.length) {
 
   const animateMovedSiblings = (firstRects, lastRects) => {
     const animations = [];
-
     upgradedItems.forEach((entry, i) => {
       const dy = firstRects[i].top - lastRects[i].top;
       if (Math.abs(dy) < 0.5) return;
-
       animations.push(entry.item.animate(
-        [
-          { transform: `translate3d(0, ${dy}px, 0)` },
-          { transform: 'translate3d(0, 0, 0)' }
-        ],
+        [{ transform: `translate3d(0, ${dy}px, 0)` }, { transform: 'translate3d(0, 0, 0)' }],
         { duration, easing }
       ));
     });
-
     return animations;
   };
 
@@ -190,9 +160,7 @@ if (nativeFaqItems.length) {
 
     const firstRects = getRects();
     const firstHeight = entry.item.getBoundingClientRect().height;
-
     setState(entry, true);
-
     const lastRects = getRects();
     const lastHeight = entry.item.getBoundingClientRect().height;
     const revealHeight = Math.max(0, lastHeight - firstHeight);
@@ -205,19 +173,13 @@ if (nativeFaqItems.length) {
 
     const siblingAnimations = animateMovedSiblings(firstRects, lastRects);
     const revealAnimation = entry.item.animate(
-      [
-        { clipPath: `inset(0 0 ${revealHeight}px 0 round 16px)` },
-        { clipPath: 'inset(0 0 0 0 round 16px)' }
-      ],
+      [{ clipPath: `inset(0 0 ${revealHeight}px 0 round 16px)` }, { clipPath: 'inset(0 0 0 0 round 16px)' }],
       { duration, easing }
     );
 
     entry.answerContent.animate(
-      [
-        { opacity: 0, transform: 'translate3d(0,-5px,0)' },
-        { opacity: 1, transform: 'translate3d(0,0,0)' }
-      ],
-      { duration: 280, delay: 45, easing, fill: 'both' }
+      [{ opacity: 0, transform: 'translate3d(0,-4px,0)' }, { opacity: 1, transform: 'translate3d(0,0,0)' }],
+      { duration: 250, delay: 35, easing, fill: 'both' }
     );
 
     revealAnimation.onfinish = () => {
@@ -244,27 +206,18 @@ if (nativeFaqItems.length) {
     const following = upgradedItems.filter(other => other !== entry && other.item.getBoundingClientRect().top > currentRect.top);
 
     const followingAnimations = following.map(other => other.item.animate(
-      [
-        { transform: 'translate3d(0,0,0)' },
-        { transform: `translate3d(0,-${answerHeight}px,0)` }
-      ],
+      [{ transform: 'translate3d(0,0,0)' }, { transform: `translate3d(0,-${answerHeight}px,0)` }],
       { duration, easing }
     ));
 
     const hideAnimation = entry.item.animate(
-      [
-        { clipPath: 'inset(0 0 0 0 round 16px)' },
-        { clipPath: `inset(0 0 ${answerHeight}px 0 round 16px)` }
-      ],
+      [{ clipPath: 'inset(0 0 0 0 round 16px)' }, { clipPath: `inset(0 0 ${answerHeight}px 0 round 16px)` }],
       { duration, easing }
     );
 
     entry.answerContent.animate(
-      [
-        { opacity: 1, transform: 'translate3d(0,0,0)' },
-        { opacity: 0, transform: 'translate3d(0,-4px,0)' }
-      ],
-      { duration: 220, easing, fill: 'both' }
+      [{ opacity: 1, transform: 'translate3d(0,0,0)' }, { opacity: 0, transform: 'translate3d(0,-3px,0)' }],
+      { duration: 200, easing, fill: 'both' }
     );
 
     hideAnimation.onfinish = () => {
