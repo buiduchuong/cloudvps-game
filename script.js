@@ -1,3 +1,7 @@
+const bottomDockLoader = document.createElement('script');
+bottomDockLoader.src = 'bottom-dock.js?v=1';
+document.head.appendChild(bottomDockLoader);
+
 const contactNavLinks = document.querySelectorAll('.menu a, .footer-links a');
 contactNavLinks.forEach(link => {
   if (link.textContent.trim().toLowerCase() === 'liên hệ') link.setAttribute('href', 'contact.html');
