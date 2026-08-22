@@ -3,6 +3,11 @@ smoothStylesheet.rel = 'stylesheet';
 smoothStylesheet.href = 'smooth-overrides.css?v=1';
 document.head.appendChild(smoothStylesheet);
 
+const faqStylesheet = document.createElement('link');
+faqStylesheet.rel = 'stylesheet';
+faqStylesheet.href = 'faq-smooth.css?v=1';
+document.head.appendChild(faqStylesheet);
+
 const menuBtn = document.getElementById('menuBtn');
 const menu = document.getElementById('menu');
 
@@ -13,8 +18,8 @@ menuBtn?.addEventListener('click', () => {
 
 document.querySelectorAll('.menu a').forEach(link => {
   link.addEventListener('click', () => {
-    menu.classList.remove('show');
-    menuBtn.textContent = '☰';
+    menu?.classList.remove('show');
+    if (menuBtn) menuBtn.textContent = '☰';
     document.querySelectorAll('.menu a').forEach(item => item.classList.remove('active'));
     link.classList.add('active');
   });
@@ -82,3 +87,85 @@ window.addEventListener('scroll', () => {
 }, { passive: true });
 
 syncActiveNav();
+
+// Smooth FAQ accordion animation for native <details> elements.
+const faqDetails = document.querySelectorAll('.faq-list details');
+const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+if (!reduceMotion) {
+  faqDetails.forEach(details => {
+    const summary = details.querySelector('summary');
+    if (!summary) return;
+
+    let animation = null;
+    let isClosing = false;
+    let isExpanding = false;
+
+    const borderHeight = () => {
+      const styles = getComputedStyle(details);
+      return (parseFloat(styles.borderTopWidth) || 0) + (parseFloat(styles.borderBottomWidth) || 0);
+    };
+
+    const finishAnimation = open => {
+      details.open = open;
+      animation = null;
+      isClosing = false;
+      isExpanding = false;
+      details.style.height = '';
+      details.style.overflow = '';
+      details.classList.remove('is-animating');
+    };
+
+    const shrink = () => {
+      const startHeight = `${details.getBoundingClientRect().height}px`;
+      const endHeight = `${summary.getBoundingClientRect().height + borderHeight()}px`;
+
+      if (animation) animation.cancel();
+      isClosing = true;
+      details.classList.add('is-animating');
+      details.style.overflow = 'hidden';
+
+      animation = details.animate(
+        { height: [startHeight, endHeight] },
+        { duration: 320, easing: 'cubic-bezier(.2,.8,.2,1)' }
+      );
+
+      animation.onfinish = () => finishAnimation(false);
+      animation.oncancel = () => { isClosing = false; };
+    };
+
+    const expand = () => {
+      const startHeight = `${details.getBoundingClientRect().height}px`;
+      const endHeight = `${details.scrollHeight + borderHeight()}px`;
+
+      if (animation) animation.cancel();
+      isExpanding = true;
+      details.classList.add('is-animating');
+      details.style.overflow = 'hidden';
+
+      animation = details.animate(
+        { height: [startHeight, endHeight] },
+        { duration: 340, easing: 'cubic-bezier(.2,.8,.2,1)' }
+      );
+
+      animation.onfinish = () => finishAnimation(true);
+      animation.oncancel = () => { isExpanding = false; };
+    };
+
+    const openDetails = () => {
+      details.style.height = `${details.getBoundingClientRect().height}px`;
+      details.open = true;
+      requestAnimationFrame(expand);
+    };
+
+    summary.addEventListener('click', event => {
+      event.preventDefault();
+
+      if (isClosing || !details.open) {
+        openDetails();
+      } else if (isExpanding || details.open) {
+        shrink();
+      }
+    });
+  });
+}
