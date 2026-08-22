@@ -5,7 +5,7 @@ document.head.appendChild(smoothStylesheet);
 
 const faqStylesheet = document.createElement('link');
 faqStylesheet.rel = 'stylesheet';
-faqStylesheet.href = 'faq-smooth.css?v=2';
+faqStylesheet.href = 'faq-smooth.css?v=3';
 document.head.appendChild(faqStylesheet);
 
 const menuBtn = document.getElementById('menuBtn');
@@ -89,11 +89,12 @@ window.addEventListener('scroll', () => {
 syncActiveNav();
 
 /*
- * Ultra-smooth FAQ accordion.
- * Native <details> is progressively enhanced into a grid-track accordion.
- * This avoids animating explicit heights and removes the jump caused by browser details layout.
+ * FAQ accordion - FLIP animation.
+ * The previous grid-track transition recalculated layout every animation frame.
+ * Here layout changes once, while neighbouring cards move with compositor transforms.
  */
 const nativeFaqItems = [...document.querySelectorAll('.faq-list details')];
+const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 if (nativeFaqItems.length) {
   const upgradedItems = nativeFaqItems.map((details, index) => {
@@ -126,9 +127,7 @@ if (nativeFaqItems.length) {
     answer.id = answerId;
     answer.setAttribute('role', 'region');
     answer.setAttribute('aria-hidden', String(!wasOpen));
-
-    const answerInner = document.createElement('div');
-    answerInner.className = 'faq-answer-inner';
+    answer.hidden = !wasOpen;
 
     const answerContent = document.createElement('div');
     answerContent.className = 'faq-answer-content';
@@ -137,34 +136,142 @@ if (nativeFaqItems.length) {
       if (child !== summary) answerContent.appendChild(child);
     });
 
-    answerInner.appendChild(answerContent);
-    answer.appendChild(answerInner);
+    answer.appendChild(answerContent);
     item.append(button, answer);
     details.replaceWith(item);
 
-    return { item, button, answer };
+    return { item, button, answer, answerContent, animating: false };
   }).filter(Boolean);
 
-  const setOpenState = (entry, shouldOpen) => {
-    entry.item.classList.toggle('is-open', shouldOpen);
-    entry.button.setAttribute('aria-expanded', String(shouldOpen));
-    entry.answer.setAttribute('aria-hidden', String(!shouldOpen));
+  const duration = 380;
+  const easing = 'cubic-bezier(.22,1,.36,1)';
+
+  const setState = (entry, open) => {
+    entry.item.classList.toggle('is-open', open);
+    entry.button.setAttribute('aria-expanded', String(open));
+    entry.answer.setAttribute('aria-hidden', String(!open));
+    entry.answer.hidden = !open;
+  };
+
+  const getRects = () => upgradedItems.map(entry => entry.item.getBoundingClientRect());
+
+  const animateMovedSiblings = (firstRects, lastRects) => {
+    const animations = [];
+
+    upgradedItems.forEach((entry, i) => {
+      const dy = firstRects[i].top - lastRects[i].top;
+      if (Math.abs(dy) < 0.5) return;
+
+      animations.push(entry.item.animate(
+        [
+          { transform: `translate3d(0, ${dy}px, 0)` },
+          { transform: 'translate3d(0, 0, 0)' }
+        ],
+        { duration, easing }
+      ));
+    });
+
+    return animations;
+  };
+
+  const openItem = entry => {
+    if (entry.animating) return;
+    entry.animating = true;
+    entry.item.classList.add('is-animating');
+
+    const firstRects = getRects();
+    const firstHeight = entry.item.getBoundingClientRect().height;
+
+    setState(entry, true);
+
+    // Force one final layout calculation, then animate only transforms/clip-path.
+    const lastRects = getRects();
+    const lastHeight = entry.item.getBoundingClientRect().height;
+    const revealHeight = Math.max(0, lastHeight - firstHeight);
+
+    if (reduceMotion) {
+      entry.animating = false;
+      entry.item.classList.remove('is-animating');
+      return;
+    }
+
+    const siblingAnimations = animateMovedSiblings(firstRects, lastRects);
+    const revealAnimation = entry.item.animate(
+      [
+        { clipPath: `inset(0 0 ${revealHeight}px 0 round 16px)` },
+        { clipPath: 'inset(0 0 0 0 round 16px)' }
+      ],
+      { duration, easing }
+    );
+
+    entry.answerContent.animate(
+      [
+        { opacity: 0, transform: 'translate3d(0,-5px,0)' },
+        { opacity: 1, transform: 'translate3d(0,0,0)' }
+      ],
+      { duration: 280, delay: 45, easing, fill: 'both' }
+    );
+
+    revealAnimation.onfinish = () => {
+      entry.animating = false;
+      entry.item.classList.remove('is-animating');
+      siblingAnimations.forEach(animation => animation.cancel());
+    };
+  };
+
+  const closeItem = entry => {
+    if (entry.animating) return;
+    entry.animating = true;
+    entry.item.classList.add('is-animating');
+
+    if (reduceMotion) {
+      setState(entry, false);
+      entry.animating = false;
+      entry.item.classList.remove('is-animating');
+      return;
+    }
+
+    const currentRect = entry.item.getBoundingClientRect();
+    const answerHeight = entry.answer.getBoundingClientRect().height;
+    const following = upgradedItems.filter(other => other !== entry && other.item.getBoundingClientRect().top > currentRect.top);
+
+    const followingAnimations = following.map(other => other.item.animate(
+      [
+        { transform: 'translate3d(0,0,0)' },
+        { transform: `translate3d(0,-${answerHeight}px,0)` }
+      ],
+      { duration, easing }
+    ));
+
+    const hideAnimation = entry.item.animate(
+      [
+        { clipPath: 'inset(0 0 0 0 round 16px)' },
+        { clipPath: `inset(0 0 ${answerHeight}px 0 round 16px)` }
+      ],
+      { duration, easing }
+    );
+
+    entry.answerContent.animate(
+      [
+        { opacity: 1, transform: 'translate3d(0,0,0)' },
+        { opacity: 0, transform: 'translate3d(0,-4px,0)' }
+      ],
+      { duration: 220, easing, fill: 'both' }
+    );
+
+    hideAnimation.onfinish = () => {
+      // Apply the compact layout at the exact moment compositor animations finish.
+      setState(entry, false);
+      followingAnimations.forEach(animation => animation.cancel());
+      entry.animating = false;
+      entry.item.classList.remove('is-animating');
+    };
   };
 
   upgradedItems.forEach(entry => {
     entry.button.addEventListener('click', () => {
-      const opening = !entry.item.classList.contains('is-open');
-
-      /* Keep the section calm: only one answer stays open at a time. */
-      if (opening) {
-        upgradedItems.forEach(other => {
-          if (other !== entry && other.item.classList.contains('is-open')) {
-            setOpenState(other, false);
-          }
-        });
-      }
-
-      requestAnimationFrame(() => setOpenState(entry, opening));
+      if (entry.item.classList.contains('is-open')) closeItem(entry);
+      else openItem(entry);
     });
   });
 }
