@@ -1,21 +1,25 @@
-/* Persistent bottom dock – designed from scratch for CloudVPS */
-body.bottom-dock-enabled{padding-bottom:116px!important}
+/* CloudVPS persistent bottom dock — production v1 */
+
+/* Reserve space only at the real page ending. This avoids changing the whole
+   document flow when JS mounts the fixed dock. */
+.footer{padding-bottom:max(112px,calc(34px + env(safe-area-inset-bottom)))!important}
 
 .bottom-dock{
   position:fixed;
   left:50%;
-  bottom:18px;
+  bottom:16px;
   z-index:9999;
-  width:min(690px,calc(100vw - 32px));
+  width:min(660px,calc(100vw - 32px));
   transform:translate3d(-50%,0,0);
-  padding:8px;
-  border:1px solid rgba(255,255,255,.42);
-  border-radius:24px;
-  background:linear-gradient(135deg,rgba(11,19,39,.88),rgba(21,32,66,.82));
-  box-shadow:0 18px 50px rgba(15,25,55,.22),inset 0 1px 0 rgba(255,255,255,.10);
-  backdrop-filter:blur(22px) saturate(155%);
-  -webkit-backdrop-filter:blur(22px) saturate(155%);
+  padding:7px;
+  border:1px solid rgba(255,255,255,.34);
+  border-radius:22px;
+  background:linear-gradient(135deg,rgba(11,19,39,.91),rgba(21,32,66,.87));
+  box-shadow:0 14px 36px rgba(15,25,55,.18),inset 0 1px 0 rgba(255,255,255,.08);
+  backdrop-filter:blur(15px) saturate(135%);
+  -webkit-backdrop-filter:blur(15px) saturate(135%);
   contain:layout paint style;
+  isolation:isolate;
 }
 
 .bottom-dock__inner{
@@ -23,25 +27,26 @@ body.bottom-dock-enabled{padding-bottom:116px!important}
   display:grid;
   grid-template-columns:repeat(5,minmax(0,1fr));
   align-items:center;
-  gap:4px;
+  gap:3px;
 }
 
 .bottom-dock__item{
   position:relative;
   min-width:0;
-  height:62px;
+  height:60px;
   display:flex;
   flex-direction:column;
   align-items:center;
   justify-content:center;
   gap:5px;
-  border-radius:17px;
-  color:rgba(230,236,250,.72);
+  border-radius:16px;
+  color:rgba(230,236,250,.76);
   text-decoration:none;
   isolation:isolate;
   transform:translate3d(0,0,0);
-  transition:transform .28s cubic-bezier(.2,.8,.2,1),color .22s ease;
-  will-change:transform;
+  transition:transform .24s cubic-bezier(.2,.8,.2,1),color .2s ease;
+  backface-visibility:hidden;
+  -webkit-backface-visibility:hidden;
   -webkit-tap-highlight-color:transparent;
 }
 
@@ -50,22 +55,22 @@ body.bottom-dock-enabled{padding-bottom:116px!important}
   position:absolute;
   inset:3px;
   z-index:-1;
-  border-radius:14px;
-  background:linear-gradient(135deg,rgba(255,255,255,.14),rgba(255,255,255,.055));
+  border-radius:13px;
+  background:linear-gradient(135deg,rgba(255,255,255,.12),rgba(255,255,255,.05));
   opacity:0;
-  transform:scale(.88) translateZ(0);
-  transition:opacity .24s ease,transform .28s cubic-bezier(.2,.8,.2,1);
-  will-change:transform,opacity;
+  transform:scale(.94) translateZ(0);
+  transition:opacity .2s ease,transform .24s cubic-bezier(.2,.8,.2,1);
+  backface-visibility:hidden;
 }
 
 .bottom-dock__icon{
-  width:23px;
-  height:23px;
+  width:22px;
+  height:22px;
   display:grid;
   place-items:center;
   transform:translate3d(0,0,0) scale(1);
-  transition:transform .28s cubic-bezier(.2,.8,.2,1);
-  will-change:transform;
+  transition:transform .24s cubic-bezier(.2,.8,.2,1);
+  backface-visibility:hidden;
 }
 
 .bottom-dock__icon svg{width:100%;height:100%;display:block;fill:none;stroke:currentColor;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
@@ -75,84 +80,71 @@ body.bottom-dock-enabled{padding-bottom:116px!important}
   overflow:hidden;
   text-overflow:ellipsis;
   white-space:nowrap;
-  font-size:11px;
+  font-size:12px;
   line-height:1;
   font-weight:700;
   letter-spacing:-.1px;
 }
 
-.bottom-dock__item.is-active{
-  color:#fff;
-}
-
+.bottom-dock__item.is-active{color:#fff}
 .bottom-dock__item.is-active::before{
   opacity:1;
   transform:scale(1) translateZ(0);
-  background:linear-gradient(135deg,rgba(72,105,255,.95),rgba(105,79,237,.92));
-  box-shadow:0 9px 22px rgba(64,83,221,.28);
+  background:linear-gradient(135deg,rgba(72,105,255,.94),rgba(105,79,237,.91));
+  box-shadow:0 7px 18px rgba(64,83,221,.24);
 }
-
-.bottom-dock__item.is-active .bottom-dock__icon{
-  transform:translate3d(0,-1px,0) scale(1.04);
-}
+.bottom-dock__item.is-active .bottom-dock__icon{transform:translate3d(0,-1px,0) scale(1.035)}
 
 .bottom-dock__item::after{
   content:"";
   position:absolute;
   left:50%;
-  bottom:-3px;
-  width:18px;
+  bottom:-2px;
+  width:17px;
   height:3px;
   border-radius:99px;
   background:linear-gradient(90deg,#63e5e0,#fff);
   opacity:0;
-  transform:translate3d(-50%,4px,0) scaleX(.55);
-  transition:opacity .24s ease,transform .3s cubic-bezier(.2,.8,.2,1);
+  transform:translate3d(-50%,3px,0) scaleX(.65);
+  transition:opacity .2s ease,transform .24s cubic-bezier(.2,.8,.2,1);
 }
-
-.bottom-dock__item.is-active::after{
-  opacity:.95;
-  transform:translate3d(-50%,0,0) scaleX(1);
-}
+.bottom-dock__item.is-active::after{opacity:.92;transform:translate3d(-50%,0,0) scaleX(1)}
 
 @media(hover:hover) and (pointer:fine){
-  .bottom-dock__item:not(.is-active):hover{
-    color:#fff;
-    transform:translate3d(0,-5px,0);
-  }
-  .bottom-dock__item:not(.is-active):hover::before{
-    opacity:1;
-    transform:scale(1) translateZ(0);
-  }
-  .bottom-dock__item:not(.is-active):hover .bottom-dock__icon{
-    transform:translate3d(0,-2px,0) scale(1.08);
-  }
+  .bottom-dock__item:not(.is-active):hover{color:#fff;transform:translate3d(0,-3px,0)}
+  .bottom-dock__item:not(.is-active):hover::before{opacity:1;transform:scale(1) translateZ(0)}
+  .bottom-dock__item:not(.is-active):hover .bottom-dock__icon{transform:translate3d(0,-1px,0) scale(1.055)}
 }
 
 @media(max-width:700px){
-  body.bottom-dock-enabled{padding-bottom:104px!important}
+  .footer{padding-bottom:max(101px,calc(28px + env(safe-area-inset-bottom)))!important}
   .bottom-dock{
-    bottom:max(9px,env(safe-area-inset-bottom));
-    width:calc(100vw - 18px);
-    padding:6px;
-    border-radius:21px;
+    bottom:max(8px,env(safe-area-inset-bottom));
+    width:calc(100vw - 16px);
+    padding:5px;
+    border-radius:19px;
+    backdrop-filter:blur(12px) saturate(125%);
+    -webkit-backdrop-filter:blur(12px) saturate(125%);
+    box-shadow:0 10px 28px rgba(15,25,55,.16),inset 0 1px 0 rgba(255,255,255,.07);
   }
   .bottom-dock__inner{gap:2px}
-  .bottom-dock__item{height:58px;border-radius:15px;gap:4px}
-  .bottom-dock__item::before{inset:2px;border-radius:13px}
+  .bottom-dock__item{height:57px;border-radius:14px;gap:4px}
+  .bottom-dock__item::before{inset:2px;border-radius:12px}
   .bottom-dock__icon{width:21px;height:21px}
-  .bottom-dock__label{font-size:10px}
+  .bottom-dock__label{font-size:11px}
 }
 
 @media(max-width:380px){
-  .bottom-dock{width:calc(100vw - 10px);padding:5px}
-  .bottom-dock__item{height:56px}
-  .bottom-dock__label{font-size:9px}
+  .bottom-dock{width:calc(100vw - 10px);padding:4px}
+  .bottom-dock__item{height:55px}
+  .bottom-dock__label{font-size:10.5px}
 }
 
+/* Small-text readability polish shared across the site. */
+.service-kicker,.service-tags span,.section-label,.plan{font-size:11px!important}
+.price-card li,.feature-card p,.service-content p{font-size:13px!important}
+.server-specs span,.trust-row span{font-size:11px!important}
+
 @media(prefers-reduced-motion:reduce){
-  .bottom-dock__item,
-  .bottom-dock__item::before,
-  .bottom-dock__item::after,
-  .bottom-dock__icon{transition:none!important}
+  .bottom-dock__item,.bottom-dock__item::before,.bottom-dock__item::after,.bottom-dock__icon{transition:none!important}
 }
